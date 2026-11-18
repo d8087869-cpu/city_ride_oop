@@ -6,17 +6,37 @@ class Bike:
         self.bike_type = bike_type
         self.hourly_price = hourly_price
         self.daily_price = daily_price
-        self.is_available = is_available
-        self.is_operational = is_operational
+        self._is_available = is_available
+        self._is_operational = is_operational
+        
+    @property
+    def is_available(self):
+        return self._is_available
+
+
+    @is_available.setter
+    def is_available(self, status):
+        if status and not self._is_operational:
+            self._is_available = False
+        else:
+            self._is_available = status
+
+    @property
+    def is_operational(self):
+        return self._is_operational
+
 
     def set_available(self, status):
         self.is_available = status
 
     def set_operational(self, status):
-        self.is_operational = status
+        self._is_operational = status
 
         if not status:
-            self.is_available = False
+            self._is_available = False
+            
+        if not self._is_operational:
+            self._is_available = False
 
     def to_dict(self):
         return {
