@@ -16,7 +16,7 @@ class DataManager:
             bikes.append(bike)
         return bikes
     
-    def load_rental(self):
+    def load_rentals(self):
         with open(self.rentals_file, "r") as file:
             rentals_data = json.load(file)
         rentals = []
