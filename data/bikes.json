@@ -52,5 +52,14 @@
         "daily_price": 220,
         "is_available": true,
         "is_operational": false
+    },
+    {
+        "bike_id": "B007",
+        "model": "City Pro Updated",
+        "bike_type": "Electric",
+        "hourly_price": 35,
+        "daily_price": 150,
+        "is_available": false,
+        "is_operational": true
     }
 ]

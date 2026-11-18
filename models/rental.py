@@ -10,15 +10,31 @@ class Rental:
         self.bike_id = bike_id
         self.start_datetime = start_datetime
         self.expected_return_datetime = expected_return_datetime
-        self.actual_return_datetime = actual_return_datetime
+        self._actual_return_datetime = actual_return_datetime
         self.total_price = total_price
-        self.late_fee = late_fee
-        self.status = status
+        self._late_fee = late_fee
+        self._status = status
+
+    @property
+    def status(self):
+        return self._status
+
+    @property
+    def actual_return_datetime(self):
+        return self._actual_return_datetime
+
+    @property
+    def late_fee(self):
+        return self._late_fee
+
 
     def complete_rental(self, return_datetime, late_fee):
-        self.actual_return_datetime = return_datetime
-        self.late_fee = late_fee
-        self.status = "Completed"
+        if self._status == "Completed":
+            return False
+        self._actual_return_datetime = return_datetime
+        self._late_fee = late_fee
+        self._status = "Completed"
+        return True
 
     def to_dict(self):
         return {
